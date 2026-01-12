@@ -7,7 +7,7 @@ import SavedCountries from "./pages/SavedCountries";
 import CountryDetail from "./pages/CountryDetail";
 
 // Local country data used for Version 0
-import localData from "../localData"; // uses my localData.js
+import localData from "./localData"; // uses my localData.js
 
 /**
  * App component

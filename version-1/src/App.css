@@ -1,0 +1,261 @@
+/* =========================
+   Header
+   ========================= */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 4rem;
+  background-color: var(--white);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.148);
+}
+
+/* Left-side title link in the header */
+.header-logo {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--dark-blue);
+  text-decoration: none;
+}
+
+/* Right-side nav link in the header */
+.header-link {
+  font-weight: 500;
+  color: #282828;
+  text-decoration: none;
+}
+
+/* =========================
+   Main layout
+   ========================= */
+
+/* Centers my page content and adds spacing around it */
+.main {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem 4rem 4rem;
+}
+
+/* =========================
+   Home page layout
+   ========================= */
+
+/* Home page wrapper adds vertical spacing between sections */
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Holds the search input + region filter */
+.home-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+}
+
+/* Search input styling (desktop size) */
+.search-input {
+  flex: 0 0 430px;
+  width: 430px;
+  padding: 1.50rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.148);
+  background-color: var(--white);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+/* Focus state shows a clear blue border + glow for accessibility */
+.search-input:focus {
+  border: 2px solid #1e40af;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Placeholder text color */
+.search-input::placeholder {
+  color: #a0a0a0;
+}
+
+/* Region dropdown styling (desktop size) */
+.region-select {
+  color: #888888;
+  flex: 0 0 220px;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.148);
+  background-color: var(--white);
+  font-size: 0.95rem;
+}
+
+/* =========================
+   Cards grid
+   ========================= */
+
+/* Responsive grid for all CountryCard components */
+.cards-grid {
+  display: grid;
+  /* minmax controls card width: higher = wider cards */
+  grid-template-columns: repeat(auto-fill, minmax(298px, 1fr));
+  gap: 2.5rem;
+}
+
+/* =========================
+   Country card
+   ========================= */
+
+.country-card {
+  background-color: var(--white);
+  border-radius: 8px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.22),
+    0 4px 8px rgba(0, 0, 0, 0.14);
+
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  /* Smooth animation for hover lift and shadow change */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Hover effect: lifts the card and increases shadow depth */
+.country-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 22px 48px rgba(0, 0, 0, 0.34),
+    0 10px 20px rgba(0, 0, 0, 0.22);
+}
+
+/* Flag image sizing */
+.country-flag {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Space inside the card where text content lives */
+.country-card-body {
+  padding: 2rem 1.75rem 2.25rem;
+}
+
+/* Country name styling */
+.country-name {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+/* Text rows (Population / Capital / Region) */
+.country-detail {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+/* Label styling inside each row */
+.country-detail .label {
+  font-weight: 600;
+}
+
+/* =========================
+   Generic page wrapper
+   ========================= */
+
+/* Shared layout for placeholder pages */
+.page {
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* =========================
+   Responsive styles
+   ========================= */
+
+/* Tablet and smaller */
+@media (max-width: 900px) {
+  .header {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .main {
+    padding: 1.5rem 1.5rem 3rem;
+  }
+
+  /* Stack search and filter vertically */
+  .home-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    justify-items: start;
+  }
+
+  /* Removes fixed desktop sizing so mobile/tablet rules can control width */
+  .search-input,
+  .region-select {
+    flex: none;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 1.25rem 1.25rem;
+  }
+
+  .search-input {
+    width: min(510px, 100%);
+  }
+
+  .region-select {
+    width: min(180px, 100%);
+  }
+}
+
+/* Phones: make both controls full width for usability */
+@media (max-width: 480px) {
+  .header {
+    padding: 1.1rem 1.25rem;
+  }
+
+  .header-logo {
+    font-size: 1.3rem;
+  }
+
+  .main {
+    padding: 1.25rem 1.25rem 2.5rem;
+  }
+
+  /* On phones, inputs stretch full width */
+  .home-controls {
+    justify-items: stretch;
+    gap: 1rem;
+  }
+
+  .search-input,
+  .region-select {
+    width: 100%;
+    padding: 0.95rem 1.1rem;
+  }
+}
+
+/* =========================
+   Vite layout override
+   ========================= */
+
+/* Removes Vite’s default centered styling so the app can be full-width */
+#root {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
