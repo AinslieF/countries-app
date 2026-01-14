@@ -1,50 +1,50 @@
 /**
  * CountryCard component
  *
- * Purpose is to:
- * - Display information for ONE country
- * - Used repeatedly on the Home page inside of a grid
+ * This component shows information for ONE country.
+ * It gets reused on the Home page to display all countries.
  *
- * Data shown:
- * - Country flag
- * - Country name
- * - Population
- * - Capital
- * - Region
+ * What it shows:
+ * ~ The country’s flag
+ * ~ The country’s name
+ * ~ Population
+ * ~ Capital
+ * ~ Region
  */
 function CountryCard({ country }) {
-  // Destructures the properties we need from the country object
-  // This keeps the JSX below cleaner and easier to read
+  // Pulls out specific data from the country object
+  // This makes the JSX below easier to read
   const { name, flags, population, capital, region } = country;
 
   return (
-    // Each country is wrapped in an <article> for HTML
+    // Wraps one country card in an article element
+    // Each article represents one country
     <article className="country-card">
-      {/* Country flag image */}
+      {/* Displays the country’s flag image */}
       <img
         className="country-flag"
-        src={flags?.png} // optional chaining in case flags are missing
-        alt={`${name.common} flag`} // accessible alt text
+        src={flags?.png} // prevents errors if the flag image is missing
+        alt={`${name.common} flag`} // descriptive text for screen readers
       />
 
-      {/* Card content container */}
+      {/* Container for the country’s text information */}
       <div className="country-card-body">
-        {/* Country name (common name) */}
+        {/* Displays the country’s common name */}
         <h2 className="country-name">{name.common}</h2>
 
-        {/* Population */}
+        {/* Displays the population */}
         <p className="country-detail">
           <span className="label">Population:</span>{" "}
-          {population.toLocaleString()} {/* formats large numbers */}
+          {population.toLocaleString()} {/* adds commas to large numbers */}
         </p>
 
-        {/* Capital (some countries may not have one) */}
+        {/* Only shows a capital if one exists. Some countries don’t have capitals, so this prevents errors.*/}
         <p className="country-detail">
           <span className="label">Capital:</span>{" "}
           {capital && capital.length > 0 ? capital[0] : "N/A"}
         </p>
 
-        {/* Region */}
+        {/* Displays the region of the world */}
         <p className="country-detail">
           <span className="label">Region:</span> {region}
         </p>

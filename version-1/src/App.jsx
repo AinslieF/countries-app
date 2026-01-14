@@ -1,34 +1,39 @@
 import "./App.css";
+// Imports routing tools so the app can navigate between pages using URLs
 import { Routes, Route, Link } from "react-router-dom";
 
-// Page components
+// Imports the page components
 import Home from "./pages/Home";
 import SavedCountries from "./pages/SavedCountries";
 import CountryDetail from "./pages/CountryDetail";
 
-// Local country data used for Version 0
-import localData from "../localData"; // uses my localData.js
+// Imports local country data for Version 0
+import localData from "../localData";
 
 /**
  * App component
  *
- * Purpose:
- * - Acts as the main layout for the application
- * - Sets up routing for all pages
- * - Renders the shared header and main content area
+ * This is the main component for the entire app.
+ *
+ * What it does:
+ * ~ Controls the overall layout of the app
+ * ~ Sets up routing between pages
+ * ~ Displays the header on every page
+ * ~ Shows the correct page based on the URL
  */
 function App() {
   return (
     <>
-      {/* 
-        Original heading kept as a comment for reference:
+      {/*
+        Original heading kept as a comment for reference.
+        I replaced it with a styled header instead.
         <h1>Countries App</h1>
       */}
 
-      {/* Header with navigation links */}
+      {/* Header that stays the same on every page */}
       <header className="header">
         <div className="header-left">
-          {/* Clicking this title routes back to the Home page */}
+          {/* App title that links back to the Home page */}
           <Link to="/" className="header-logo">
             Where in the world?
           </Link>
@@ -42,19 +47,31 @@ function App() {
         </nav>
       </header>
 
-      {/* Main content area where routed pages are displayed */}
+      {/* Main section where different pages are rendered */}
       <main className="main">
         <Routes>
-          {/* Home page: receives country data as props */}
+          {/*
+            Home page route
+            ~ Passes country data down as props
+            ~ Displays the list of all countries
+          */}
           <Route
             path="/"
             element={<Home countriesData={localData} />}
           />
 
-          {/* Saved Countries page (placeholder for Version 0) */}
+          {/*
+            Saved Countries route
+            ~ Currently a placeholder page in Version 0
+            ~ Will be expanded in later versions
+          */}
           <Route path="/saved" element={<SavedCountries />} />
 
-          {/* Country Detail page (route exists, content that will be added later) */}
+          {/*
+            Country Detail route
+            ~ Uses a dynamic URL parameter (countryCode)
+            ~ Page content will be built in future versions
+          */}
           <Route path="/country/:countryCode" element={<CountryDetail />} />
         </Routes>
       </main>

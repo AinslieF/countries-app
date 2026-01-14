@@ -3,9 +3,9 @@
    ========================= */
 
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  position: sticky; /* makes element stick */
+  top: 0; /* makes it stick at very top */
+  z-index: 10; /* controls which element stays on top */
   display: flex;
   align-items: center;
   justify-content: space-between;
