@@ -6,6 +6,8 @@
  * What it does right now:
  * ~ Acts as a placeholder page
  * ~ Helps confirm that routing works when navigating to a country detail page
+ * ~ Receives country data as props, but does not use it yet
+
  *
  * What it will do in later versions:
  * ~ Use the country code from the URL

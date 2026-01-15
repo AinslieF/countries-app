@@ -119,18 +119,26 @@ function App() {
           />
 
           {/*
-            Saved Countries route
-            ~ Currently a placeholder page in Version 0
+            Home page route
+            ~ This route shows the Home page when the URL is "/"
+            ~ We pass the list of countries from state down to Home as props
+            ~ Home uses this data to display all CountryCard components
           */}
-          <Route path="/saved" element={<SavedCountries />} />
+          <Route
+            path="/saved"
+            element={<SavedCountries countriesData={countries} />}
+          />
 
           {/*
             Country Detail route
-            ~ Uses a dynamic URL parameter (countryCode)
-          */}
+           ~ This is a dynamic route that changes based on the country code in the URL
+           ~ Example: /country/USA or /country/FRA
+           ~ We pass the full countries data so CountryDetail can find and display
+             the correct country based on the URL parameter
+          */}   
           <Route
             path="/country/:countryCode"
-            element={<CountryDetail />}
+            element={<CountryDetail countriesData={countries} />}
           />
         </Routes>
       </main>
