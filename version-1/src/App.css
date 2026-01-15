@@ -220,8 +220,8 @@
 
 .saved-layout {
   display: flex;
-  gap: 4rem;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .profile-column {
@@ -246,7 +246,7 @@
 }
 
 .form-input {
-  width: 480px; /* wider like Figma */
+  width: 480px; 
   padding: 1.25rem 1.5rem;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
@@ -260,19 +260,6 @@
 
 .form-input::placeholder {
   color: #a0a0a0;
-}
-
-select.form-input {
-  width: 480px; 
-  appearance: none;
-  color: #a0a0a0;
-
-  /* custom dropdown arrow */
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='gray' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1.25rem center;
-  background-size: 1rem;
-  padding-right: 3rem;
 }
 
 .form-textarea {
@@ -313,25 +300,25 @@ select.form-input {
   cursor: pointer;
 }
 
+/* When the user hovers their mouse over the Submit (or Back) button, the button becomes slightly faded */
 .form-submit:hover {
   opacity: 0.9;
 }
 
-.saved-list-column {
+/* .saved-list-column {
   flex: 1;
-}
+} */
 
 @media (max-width: 900px) {
   .saved-layout {
     flex-direction: column;
   }
 
-  .profile-column,
-  .form-input,
-  select.form-input,
-  .form-textarea {
-    width: 100%;
-  }
+.profile-column,
+.form-input,
+.form-textarea {
+  width: 100%;
+}
 }
 
 @media (max-width: 480px) {

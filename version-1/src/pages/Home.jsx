@@ -33,7 +33,7 @@ function Home({ countriesData }) {
           aria-label="Search for a country"
         />
 
-        {/* Dropdown where the user will eventually filter by region. Using these regions for now in my form */}
+        {/* Dropdown where the user will eventually filter by region */}
         <select className="region-select" aria-label="Filter by region">
           <option value="">Filter by Region</option>
           <option value="Africa">Africa</option>

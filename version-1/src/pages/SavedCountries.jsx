@@ -16,14 +16,19 @@ function SavedCountries() {
       <h1>My Saved Countries</h1>
 
       {/*
-        This layout has two columns:
-        the left side is the user profile form
-        and the right side is the placeholder for saved countries list
+          UPDATED based on Nicole's feedback:
+        ~ In future versions, saved countries will be ABOVE the form
+        ~ So the saved countries section comes first in the JSX
+        ~ The CSS will stack everything vertically (not side by side columns)
       */}
       <div className="saved-layout">
-        {/* Left column that holds the profile form */}
+        {/* Top section saved countries future feature */}
+        <div className="saved-list-column">
+          {/* Saved countries will be displayed here later */}
+        </div>
+
+        {/* Bottom section will be the user profile form */}
         <div className="profile-column">
-          
           {/* Section title for the profile form */}
           <h2 className="profile-title">My Profile</h2>
 
@@ -46,18 +51,14 @@ function SavedCountries() {
             />
 
             {/*
-              Country dropdown
-              ~ These are placeholder options for now
-              ~ Later this will be filled using real country data
+              Country's input 
             */}
-            <select className="form-input" aria-label="Country">
-              <option value="">Country</option>
-              <option value="Africa">Africa</option>
-              <option value="Americas">Americas</option>
-              <option value="Asia">Asia</option>
-              <option value="Europe">Europe</option>
-              <option value="Oceania">Oceania</option>
-            </select>
+            <input
+              type="text"
+              className="form-input"
+              placeholder="Country"
+              aria-label="Country"
+            />
 
             {/* Text area where the user can write a short bio */}
             <textarea
@@ -85,11 +86,6 @@ function SavedCountries() {
               </button>
             </div>
           </form>
-        </div>
-
-        {/* Right column reserved for saved countries in future versions */}
-        <div className="saved-list-column">
-          {/* Saved countries will be displayed here later */}
         </div>
       </div>
     </section>

@@ -2,12 +2,12 @@
  * SavedCountries page
  *
  * Version 0 purpose:
- * - Acts as a placeholder page
- * - Confirms routing works for the "Saved Countries" link
+ * ~ Acts as a placeholder page
+ * ~ Confirms routing works for the "Saved Countries" link
  *
  * My future versions will:
- * - Display a list of saved countries
- * - Include a form to add new saved countries
+ * ~ Display a list of saved countries
+ * ~ Include a form to add new saved countries/profile info
  */
 function SavedCountries() {
   return (

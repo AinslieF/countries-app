@@ -2,49 +2,49 @@
  * CountryCard component
  *
  * Purpose is to:
- * - Display information for ONE country
- * - Used repeatedly on the Home page inside of a grid
+ * ~ Display information for ONE country
+ * ~ Be used repeatedly on the Home page inside of a grid
  *
  * Data shown:
- * - Country flag
- * - Country name
- * - Population
- * - Capital
- * - Region
+ * ~ Country flag
+ * ~ Country name
+ * ~ Population
+ * ~ Capital
+ * ~ Region
  */
 function CountryCard({ country }) {
-  // Destructures the properties we need from the country object
+  // Destructures or pulls out specific data we need from the country object
   // This keeps the JSX below cleaner and easier to read
   const { name, flags, population, capital, region } = country;
 
   return (
-    // Each country is wrapped in an <article> for HTML
-    <article className="country-card">
-      {/* Country flag image */}
+    // Wraps one country card in an <article> element for HTML and each article represents one country
+    <article className="country-card"> 
+      {/* Country flag image displayed here */}
       <img
         className="country-flag"
-        src={flags?.png} // optional chaining in case flags are missing
-        alt={`${name.common} flag`} // accessible alt text
+        src={flags?.png} // prevents errors if the flag image is missing
+        alt={`${name.common} flag`} // descriptive alt text for readers
       />
 
-      {/* Card content container */}
+      {/* Card content container for the country's text info */}
       <div className="country-card-body">
-        {/* Country name (common name) */}
+        {/* Country name (common name) being displayed here */}
         <h2 className="country-name">{name.common}</h2>
 
-        {/* Population */}
+        {/* Shows the population */}
         <p className="country-detail">
           <span className="label">Population:</span>{" "}
-          {population.toLocaleString()} {/* formats large numbers */}
+          {population.toLocaleString()} {/* adds commas to large numbers */}
         </p>
 
-        {/* Capital (some countries may not have one) */}
+        {/* Capital (some countries may not have one) so it only shows a capital if one exists otherwise N/A */}
         <p className="country-detail">
           <span className="label">Capital:</span>{" "}
           {capital && capital.length > 0 ? capital[0] : "N/A"}
         </p>
 
-        {/* Region */}
+        {/* Displays the region of the world */}
         <p className="country-detail">
           <span className="label">Region:</span> {region}
         </p>
