@@ -5,12 +5,13 @@ import CountryCard from "../components/CountryCard";
  *
  * What this page does:
  * ~ This is the main page you see when the app loads
- * ~ It receives country data from App.jsx
+ * ~ It receives country data from App.jsx as a prop called ({ countriesData })
  * ~ It shows all countries using CountryCard components
  */
 function Home({ countriesData }) {
   // Makes a copy of the countries array and sorts it alphabetically
   // This keeps the original data unchanged
+  // Sorting the API date
   const sortedCountries = [...countriesData].sort((a, b) =>
     a.name.common.localeCompare(b.name.common)
   );
@@ -47,6 +48,7 @@ function Home({ countriesData }) {
       {/*
         Grid that holds all country cards
         One CountryCard is created for each country in the data
+        Rendering the API data
       */}
       <div className="cards-grid">
         {sortedCountries.map((country) => (
