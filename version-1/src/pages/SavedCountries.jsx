@@ -1,38 +1,53 @@
 /**
  * SavedCountries page
  *
- * What this page is for in Version 0:
- * ~ This page proves that routing works when Saved Countries is clicked
- * ~ It shows the basic layout we will build on later
+ * What this page is for in Version 1:
+ * ~ Confirms routing works when "Saved Countries" is clicked
+ * ~ Displays the Saved Countries page layout
+ * ~ Includes a styled profile form (not functional yet)
  *
- * In future versions, this page will:
+ * In my future versions, this page will:
  * ~ Show a list of countries the user has saved
- * ~ Include a working form to add profile information. Form now included!
+ * ~ Allow users to save profile information
  */
 function SavedCountries() {
   return (
     // Main wrapper for the Saved Countries page
     <section className="saved-page">
+      {/* Page heading */}
       <h1>My Saved Countries</h1>
 
       {/*
-          UPDATED based on Nicole's feedback:
-        ~ In future versions, saved countries will be ABOVE the form
-        ~ So the saved countries section comes first in the JSX
-        ~ The CSS will stack everything vertically (not side by side columns)
+        Layout container for this page
+
+        Instructor feedback applied :)
+        ~ Saved countries should appear ABOVE the profile form
+        ~ Content should be stacked vertically (not side by side columns)
+        ~ The order in JSX now matches the future layout
       */}
       <div className="saved-layout">
-        {/* Top section saved countries future feature */}
+        {/* 
+          Saved countries section ~
+          This section is intentionally empty for now.
+          In future versions, saved country cards will appear here.
+        */}
         <div className="saved-list-column">
           {/* Saved countries will be displayed here later */}
         </div>
 
-        {/* Bottom section will be the user profile form */}
+        {/* 
+          Profile form section
+          This is where the user enters their profile information
+        */}
         <div className="profile-column">
           {/* Section title for the profile form */}
           <h2 className="profile-title">My Profile</h2>
 
-          {/* Profile form (not functional yet in Version 0 and I didn't make it functional yet in Version 1) */}
+          {/* 
+            Profile form
+            ~ Styled according to the Figma design
+            ~ Not functional yet (no state or submit handling in Version 1)
+          */}
           <form className="profile-form">
             {/* Input for the user's full name */}
             <input
@@ -42,7 +57,7 @@ function SavedCountries() {
               aria-label="Full name"
             />
 
-            {/* Input for the user's email */}
+            {/* Input for the user's email address */}
             <input
               type="email"
               className="form-input"
@@ -50,8 +65,10 @@ function SavedCountries() {
               aria-label="Email"
             />
 
-            {/*
-              Country's input 
+            {/* 
+              Country input
+              A text input is used instead of a dropdown
+              to allow flexibility in future versions !
             */}
             <input
               type="text"
@@ -60,7 +77,7 @@ function SavedCountries() {
               aria-label="Country"
             />
 
-            {/* Text area where the user can write a short bio */}
+            {/* Text area for the user's bio */}
             <textarea
               className="form-textarea"
               placeholder="Bio"
@@ -68,9 +85,9 @@ function SavedCountries() {
             />
 
             {/*
-              Buttons section:
-              ~ Back button goes to the previous page
-              ~ Submit button will eventually save the form data. Not yet functional :)
+              Form action buttons
+              ~ Back button returns the user to the previous page
+              ~ Submit button is for future functionality
             */}
             <div className="form-buttons">
               <button

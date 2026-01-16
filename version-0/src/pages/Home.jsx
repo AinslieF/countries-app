@@ -52,7 +52,8 @@ function Home({ countriesData }) {
           <CountryCard
             // React needs a unique key for each item in a list so I used the country's 3-letter code because it's unique
             // If that code is missing , it will fall back to the country's name so React doesn't throw an error
-            key={country.cca3 ?? country.name.common}
+            //Fixed
+            key={country.cca3}
             country={country}
           />
         ))}

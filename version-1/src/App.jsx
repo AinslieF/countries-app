@@ -2,7 +2,7 @@ import "./App.css";
 // Imports routing tools so the app can navigate between pages using URLs
 import { Routes, Route, Link } from "react-router-dom";
 
-// Imports React hooks so we can store data and run code when the app loads
+// Imports React hooks so we can store data and run code when the app loads (API purposes)
 import { useEffect, useState } from "react";
 
 // Imports the page components
@@ -25,7 +25,7 @@ import localData from "../localData";
  * ~ Shows the correct page based on the URL
  */
 function App() {
-  // Stores the list of countries from the API
+  // Stores the list of countries from the (API)
   // Starts as an empty array because we don’t have data yet
   const [countries, setCountries] = useState([]);
 
@@ -60,12 +60,15 @@ function App() {
 
       // Saves the API data into state
       setCountries(data);
+
+      // Stops the loading state once the API data is saved
+      setIsLoading(false);
     } catch (err) {
       // If the API fails, use this local backup data instead
       setCountries(localData);
       setError("API is down — showing local backup data.");
-    } finally {
-      // Stops the loading state once everything finishes
+
+      // Stops the loading state even if the API fails
       setIsLoading(false);
     }
   };
@@ -113,16 +116,12 @@ function App() {
             ~ Passes country data down as props
             ~ Displays the list of all countries
           */}
-          <Route
-            path="/"
-            element={<Home countriesData={countries} />}
-          />
+          <Route path="/" element={<Home countriesData={countries} />} />
 
           {/*
-            Home page route
-            ~ This route shows the Home page when the URL is "/"
-            ~ We pass the list of countries from state down to Home as props
-            ~ Home uses this data to display all CountryCard components
+            Saved Countries route
+            ~ This route shows the Saved Countries page when the URL is "/saved"
+            ~ We pass the countries data down in case it is needed in future versions
           */}
           <Route
             path="/saved"
@@ -132,10 +131,10 @@ function App() {
           {/*
             Country Detail route
            ~ This is a dynamic route that changes based on the country code in the URL
-           ~ Example: /country/USA or /country/FRA
+           ~ Example ~ /country/USA or /country/FRA
            ~ We pass the full countries data so CountryDetail can find and display
              the correct country based on the URL parameter
-          */}   
+          */}
           <Route
             path="/country/:countryCode"
             element={<CountryDetail countriesData={countries} />}

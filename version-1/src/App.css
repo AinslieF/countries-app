@@ -1,3 +1,7 @@
+/* =========================
+   HEADER
+   ========================= */
+
 .header {
   position: sticky; /* makes element stick */
   top: 0; /* makes it stick at very top */
@@ -23,21 +27,26 @@
   text-decoration: none;
 }
 
-/* Centers my page */
+/* =========================
+   MAIN LAYOUT / PAGE WRAPPER
+   ========================= */
+
 .main {
   max-width: 1440px;
   margin: 0 auto;
   padding: 2rem 4rem 4rem;
 }
 
-/* Home page wrapper adds vertical spacing between sections */
+/* =========================
+   HOME PAGE CONTROLS (SEARCH + FILTER)
+   ========================= */
+
 .home {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* Holds the search input + region filter */
 .home-controls {
   display: flex;
   flex-wrap: wrap;
@@ -45,11 +54,10 @@
   justify-content: space-between;
 }
 
-/* Search input styling (desktop size) */
 .search-input {
   flex: 0 0 430px;
   width: 430px;
-  padding: 1.50rem 1.5rem;
+  padding: 1.5rem 1.5rem;
   border-radius: 8px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.148);
@@ -58,18 +66,15 @@
   outline: none;
 }
 
-/* Focus state shows a clear blue border + glow */
 .search-input:focus {
   border: 2px solid #1e40af;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
-/* Placeholder text color */
 .search-input::placeholder {
   color: #a0a0a0;
 }
 
-/* Region dropdown styling (desktop size) */
 .region-select {
   color: #888888;
   flex: 0 0 220px;
@@ -81,39 +86,35 @@
   font-size: 0.95rem;
 }
 
-/* Responsive grid for all CountryCard components */
+/* =========================
+   HOME PAGE COUNTRY CARDS GRID
+   ========================= */
+
 .cards-grid {
   display: grid;
-  /* minmax controls card width: higher = wider cards */
   grid-template-columns: repeat(auto-fill, minmax(298px, 1fr));
   gap: 2.5rem;
 }
 
+/* =========================
+   COUNTRY CARD
+   ========================= */
+
 .country-card {
   background-color: var(--white);
   border-radius: 8px;
-
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.22),
-    0 4px 8px rgba(0, 0, 0, 0.14);
-
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.22), 0 4px 8px rgba(0, 0, 0, 0.14);
   display: flex;
   flex-direction: column;
   cursor: pointer;
-
-  /* Smooth animation for hover lift and shadow change */
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Hover effect: lifts the card and increases shadow depth */
 .country-card:hover {
   transform: translateY(-6px);
-  box-shadow:
-    0 22px 48px rgba(0, 0, 0, 0.34),
-    0 10px 20px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.34), 0 10px 20px rgba(0, 0, 0, 0.22);
 }
 
-/* Flag image sizing */
 .country-flag {
   width: 100%;
   height: 210px;
@@ -141,7 +142,16 @@
   font-weight: 600;
 }
 
-/* Shared layout for placeholder pages */
+.country-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* =========================
+   GENERIC PAGE WRAPPER (USED BY PLACEHOLDER PAGES)
+   ========================= */
+
 .page {
   max-width: 600px;
   margin: 2rem auto;
@@ -151,7 +161,189 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-/* Tablet and smaller */
+/* =========================
+   SAVED COUNTRIES PAGE LAYOUT
+   ========================= */
+
+.saved-page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem 4rem 4rem;
+}
+
+/* Stacked layout (saved list above form) */
+.saved-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* This controls the {max form width} */
+.profile-column {
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-title {
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--dark-blue);
+}
+
+.saved-page h1 {
+  margin: 0;                 
+  font-size: 2rem;           
+  font-weight: 700;          
+  color: var(--dark-blue);   
+}
+
+.profile-title {
+  margin-top: 0;             
+  font-size: 2rem;           
+  font-weight: 700;          
+  color: var(--dark-blue);
+}
+
+/* =========================
+   SAVED COUNTRIES FORM
+   ========================= */
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background-color: var(--white);
+  font-size: 0.95rem;
+  color: #111517;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.form-input::placeholder {
+  color: #a0a0a0;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border: 2px solid #1e40af;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Buttons row */
+.form-buttons {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.form-submit {
+  flex: 1;
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #7672ce;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-submit:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   COUNTRY DETAIL PAGE 
+   ========================= */
+
+.detail-page {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem 4rem 4rem;
+}
+
+.detail-back-btn {
+  border: 1px solid #e5e7eb;
+  background: var(--white);
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.detail-layout {
+  display: flex;
+  gap: 3rem;
+  margin-top: 2rem;
+  align-items: flex-start;
+}
+
+.detail-flag-wrap {
+  flex: 0 0 420px;
+}
+
+.detail-flag {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.detail-info {
+  flex: 1;
+}
+
+.detail-name {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--dark-blue);
+}
+
+.detail-save-btn {
+  margin-top: 0.75rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  background: var(--white);
+  cursor: pointer;
+}
+
+.detail-row {
+  margin: 0.75rem 0;
+  font-size: 1rem;
+}
+
+.detail-label {
+  font-weight: 700;
+}
+
+.detail-placeholder {
+  margin-top: 2rem;
+  color: #555;
+}
+
+/* =========================
+   RESPONSIVE STYLES (HOME ~ SAVED ~ DETAIL)
+   ========================= */
+
 @media (max-width: 900px) {
   .header {
     padding: 1.25rem 1.5rem;
@@ -161,7 +353,7 @@
     padding: 1.5rem 1.5rem 3rem;
   }
 
-  /* Stack search and filter vertically */
+  /* Home controls stack */
   .home-controls {
     display: grid;
     grid-template-columns: 1fr;
@@ -169,7 +361,6 @@
     justify-items: start;
   }
 
-  /* Removes fixed desktop sizing so mobile/tablet rules can control width */
   .search-input,
   .region-select {
     flex: none;
@@ -184,6 +375,26 @@
 
   .region-select {
     width: min(180px, 100%);
+  }
+
+  /* SavedCountries form becomes full width */
+  .profile-column {
+    width: 100%;
+  }
+
+  /* Detail page stacks */
+  .detail-page {
+    padding: 1.5rem 1.5rem 3rem;
+  }
+
+  .detail-layout {
+    flex-direction: column;
+  }
+
+  .detail-flag-wrap {
+    flex: none;
+    width: 100%;
+    max-width: 520px;
   }
 }
 
@@ -210,132 +421,31 @@
     width: 100%;
     padding: 0.95rem 1.1rem;
   }
-}
 
-.saved-page {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 2rem 4rem 4rem; 
-}
-
-.saved-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-
-.profile-column {
-  width: 480px;
-  display: flex;
-  flex-direction: column;
-}
-
-.profile-title {
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--dark-blue);
-}
-
-/* still working on form styling */
-.profile-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.form-input {
-  width: 480px; 
-  padding: 1.25rem 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  background-color: var(--white);
-  font-size: 0.95rem;
-  color: #111517;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  outline: none;
-  box-sizing: border-box;
-}
-
-.form-input::placeholder {
-  color: #a0a0a0;
-}
-
-.form-textarea {
-  width: 480px;
-  min-height: 120px;
-  padding: 1.25rem 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #e5e7eb;
-  background-color: var(--white);
-  font-size: 0.95rem;
-  resize: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  outline: none;
-  box-sizing: border-box;
-}
-
-.form-input:focus,
-.form-textarea:focus {
-  border: 2px solid #1e40af;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-}
-
-.form-buttons {
-  display: flex;
-  gap: 1.25rem;
-  margin-top: 0.5rem;
-}
-
-.form-submit {
-  flex: 1;
-  padding: 1rem;
-  border-radius: 8px;
-  border: none;
-  background-color: #7672ce; 
-  color: white;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* When the user hovers their mouse over the Submit (or Back) button, the button becomes slightly faded */
-.form-submit:hover {
-  opacity: 0.9;
-}
-
-/* .saved-list-column {
-  flex: 1;
-} */
-
-@media (max-width: 900px) {
-  .saved-layout {
-    flex-direction: column;
-  }
-
-.profile-column,
-.form-input,
-.form-textarea {
-  width: 100%;
-}
-}
-
-@media (max-width: 480px) {
+  /* SavedCountries page spacing */
   .saved-page {
     padding: 1.25rem;
   }
 
+  /* Buttons stack */
   .form-buttons {
     flex-direction: column;
+  }
+
+  /* Detail page spacing */
+  .detail-page {
+    padding: 1.25rem 1.25rem 2.5rem;
+  }
+
+  .detail-name {
+    font-size: 1.35rem;
   }
 }
 
 /* =========================
-   Vite layout override
+   VITE LAYOUT OVERRIDE
    ========================= */
 
-/* Removes Vite’s default centered styling so the app can be full-width */
 #root {
   max-width: none;
   margin: 0;

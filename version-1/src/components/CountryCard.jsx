@@ -1,3 +1,5 @@
+// Imports Link so we can make the entire country card clickable
+// When a user clicks a card, it navigates to that country’s detail page
 import { Link } from "react-router-dom";
 
 /**
@@ -19,9 +21,9 @@ function CountryCard({ country }) {
   const { name, flags, population, capital, region } = country;
 
   return (
-    // Link makes the entire country card clickable
-    // It sends the user to the dynamic Country Detail page
-    <Link to={`/country/${country.cca3}`}>
+    // Wraps the entire card in a Link so clicking the card goes to the detail page
+    // We use the country's 3-letter code (cca3) because it is unique
+    <Link to={`/country/${country.cca3}`} className="country-card-link">
       {/* Wraps one country card in an article element */}
       {/* Each article represents one country */}
       <article className="country-card">

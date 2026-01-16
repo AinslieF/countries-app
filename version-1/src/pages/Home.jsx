@@ -1,3 +1,5 @@
+// Imports the CountryCard component so this page can display
+// individual country cards for each country in the data
 import CountryCard from "../components/CountryCard";
 
 /**
@@ -11,7 +13,7 @@ import CountryCard from "../components/CountryCard";
 function Home({ countriesData }) {
   // Makes a copy of the countries array and sorts it alphabetically
   // This keeps the original data unchanged
-  // Sorting the API date
+  // Sorting the API data
   const sortedCountries = [...countriesData].sort((a, b) =>
     a.name.common.localeCompare(b.name.common)
   );
@@ -54,12 +56,13 @@ function Home({ countriesData }) {
         {sortedCountries.map((country) => (
           <CountryCard
             /*
-              React needs a unique key for each item in a list.
-              ~ I used the country’s 3-letter code (cca3) because it’s unique.
-              ~ If that code is missing, it will fall back to the country’s name
-                so React doesn’t throw an error.
+              React requires a unique "key" for each item in a list.
+              We use the country's 3-letter code (cca3) because:
+              ~ It is unique
+              ~ It does not change
+              ~ It is safer than using an array index
             */
-            key={country.cca3 ?? country.name.common}
+            key={country.cca3}
             country={country}
           />
         ))}
