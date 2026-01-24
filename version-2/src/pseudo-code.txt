@@ -105,23 +105,27 @@ Add more steps as needed!
 ========================
 
 ❓ WHAT...
-TYPE OF HTTP REQUEST (GET OR POST): ------
-API ENDPOINT: ------
+TYPE OF HTTP REQUEST (GET OR POST): POST
+API ENDPOINT: /save-one-country
 
-REQUEST BODY DATA TYPE (if applicable): ------
+REQUEST BODY DATA TYPE (if applicable): Object (JSON)
 REQUEST BODY (if applicable): ------
+{
+  "country_name": "Brazil"
+}
 
-RESPONSE DATA TYPE: ------
-RESPONSE: ------
 
-❓ WHEN: ------
+RESPONSE DATA TYPE: String
+RESPONSE: Success! The country is saved.
 
-❓ WHERE: ------
+❓ WHEN: When the user clicks the Save button on the CountryDetail page.
+
+❓ WHERE: In CountryDetail.jsx, inside the handleSaveCountry() function.
 
 ❓ HOW:
-Step 1: ------
-Step 2: ------
-Step 3: ------
+Step 1: Make a Save button click handler.
+Step 2: Send POST request with the country_name ~ name.common.
+Step 3: After success you can show a message eg. Saved! or refresh saved list later on.
 Add more steps as needed!
 
 ========================
@@ -129,23 +133,33 @@ Add more steps as needed!
 ========================
 
 ❓ WHAT...
-TYPE OF HTTP REQUEST (GET OR POST): ------
-API ENDPOINT: ------
+TYPE OF HTTP REQUEST (GET OR POST): GET
+API ENDPOINT: /get-all-saved-countries
 
 REQUEST BODY DATA TYPE (if applicable): ------
 REQUEST BODY (if applicable): ------
 
-RESPONSE DATA TYPE: ------
+RESPONSE DATA TYPE: Array of objects
 RESPONSE: ------
+[
+  {
+    "country_name": "Japan"
+  },
+  {
+    "country_name": "Germany"
+  }
+]
 
-❓ WHEN: ------
 
-❓ WHERE: ------
+❓ WHEN: When the SavedCountries page loads and also after saving a country.
+
+❓ WHERE: In SavedCountries.jsx, in a function like getSavedCountries(); and it has to be called in useEffect.
 
 ❓ HOW:
-Step 1: ------
-Step 2: ------
-Step 3: ------
+Step 1: Create state ~ const [savedCountries, setSavedCountries] = useState([]).
+Step 2: Make getSavedCountries() fetch the GET endpoint.
+Step 3: Save response array into state.
+Step 4: Render country cards above the form.
 Add more steps as needed!
 
 =================================
