@@ -17,7 +17,7 @@ import { useParams } from "react-router-dom";
  * ~ Show full details about that country
  */
 
-// UPDATED: We are now receiving the countriesData prop from App.jsx
+// UPDATED! We are now receiving the countriesData prop from App.jsx
 function CountryDetail({ countriesData }) {
   // Gets the dynamic part of the URL (the countryCode)
   // Example ~ if the URL is /country/AFG then countryCode is "AFG"
@@ -112,11 +112,6 @@ function CountryDetail({ countriesData }) {
         </div>
       </div>
 
-      {/* Original placeholder text */}
-      <p className="detail-placeholder">
-        This page will show detailed info about a single country in a later
-        version of the app.
-      </p>
     </section>
   );
 }

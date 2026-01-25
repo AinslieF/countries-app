@@ -178,6 +178,20 @@
   gap: 3rem;
 }
 
+/* Saved Countries cards grid (still trying to let it match Figma layout) */
+.saved-list-column {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 1rem;
+  align-items: start;
+}
+
+/* Makes saved country cards the same size style */
+.saved-list-column .country-card {
+  max-width: 260px;
+}
+
 /* This controls the {max form width} */
 .profile-column {
   width: 480px;

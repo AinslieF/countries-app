@@ -93,7 +93,7 @@ Step 1: Someone needs to fill out the form first and submit.
 Step 2: Make an async function called getNewestUserData that uses fetch() to send a GET request to the endpoint /get-newest-user. 
 Then the function saves the data to a state variable called newestUserData.
 Step 3: We will use useEffect to call getNewestUserData() on page load.
-Step 4: Render the newest user's name to the screen in JSX.
+Step 4: Render the newest users name to the screen in JSX.
 Add more steps as needed!
 
 ===================================
