@@ -10,7 +10,7 @@ import CountryCard from "../components/CountryCard"; // NEW ~ reused same card f
  * Version 2 updates:
  * ~ Gets newest user from backend
  * ~ Displays welcome message if user exists
- * ~ Retrieves saved countries (GET only until we do POST in class)
+ * ~ Retrieves saved countries (STARTED POST)
  * ~ Displays saved countries above the form
  */
 function SavedCountries({ countriesData }) { // NEW ~ receives countries data so we can match saved names
@@ -36,12 +36,41 @@ function SavedCountries({ countriesData }) { // NEW ~ receives countries data so
     setFormData({ ...formData, [name]: value });
   };
 
+  // added today ~ write a function for storing Form data (POST request)
+  const storeUserData = async (data) => { // makes a reusable function to send form data to the backend
+    const response = await fetch( // sends a request to the backend endpoint
+      "/api/add-one-user", // endpoint that saves one user in the database
+      {
+        // type of HTTP request
+        method: "POST", // POST means we are sending data to be stored
+        // specifies the type of data being sent
+        headers: {
+          "Content-Type": "application/json", // tells the backend we are sending JSON
+        },
+        // converts our JavaScript object into JSON text before sending
+        body: JSON.stringify({ // stringify turns the object into JSON the backend can read
+          name: data.fullName, // backend expects "name"
+          country_name: data.country, // backend expects "country_name"
+          email: data.email, // backend expects "email"
+          bio: data.bio, // backend expects "bio"
+        }),
+      }
+    );
+
+    // the backend returns a text message, so we can read it as a text
+    const result = await response.text(); // gets the backend response message as a text
+    console.log("result", result); // added today ~ shows the success message in the console
+  };
+
   // ~NEW~ Handles submitting the form
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ~NEW~ Just logs form data for now (NO POST yet NEXT WEEK!!!!!!)
+    // ~NEW~ Just logs form data for now (ONLY ADDED MY FORM POST SO FAR!!!!!!)
     console.log(formData);
+
+    // added today ~ sends the form data to the backend using POST 
+    storeUserData(formData); // added today ~ calls the POST function and passes the current form data
 
     // ~NEW~ Resets the form after submission
     setFormData({
@@ -98,9 +127,6 @@ function SavedCountries({ countriesData }) { // NEW ~ receives countries data so
     <section className="saved-page">
       <h1>My Saved Countries</h1>
 
-      {/* ~NEW~ Shows welcome message if user exists */}
-      {newestUserData && <h2>Welcome, {newestUserData.name}!</h2>}
-
       <div className="saved-layout">
         {/* ~NEW~ Saved countries section */}
         <div className="saved-list-column">
@@ -120,6 +146,9 @@ function SavedCountries({ countriesData }) { // NEW ~ receives countries data so
             );
           })}
         </div>
+
+        {/* ~NEW~ Shows welcome message if user exists */}
+        {newestUserData && <h2>Welcome, {newestUserData.name}!</h2>}
 
         {/* Profile form section */}
         <div className="profile-column">
