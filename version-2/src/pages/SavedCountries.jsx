@@ -62,14 +62,33 @@ function SavedCountries({ countriesData }) { // NEW ~ receives countries data so
     console.log("result", result); // added today ~ shows the success message in the console
   };
 
+  // todays saved countries ~ write a function for saving one country (POST request)
+  const saveOneCountry = async (countryName) => { // makes a reusable function to send a country name to backend
+    const response = await fetch( // sends a request to the backend endpoint
+      "/api/save-one-country", // endpoint that saves one country in the database
+      {
+        method: "POST", // POST means we are sending data to be stored
+        headers: {
+          "Content-Type": "application/json", // tells the backend we are sending JSON
+        },
+        body: JSON.stringify({ // converts our JavaScript object into JSON text before sending
+          country_name: countryName, // backend expects "country_name"
+        }),
+      }
+    );
+
+    const result = await response.text(); // backend returns a text message
+    console.log("save result", result); // added today ~ shows the success message in the console
+  };
+
   // ~NEW~ Handles submitting the form
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ~NEW~ Just logs form data for now (ONLY ADDED MY FORM POST SO FAR!!!!!!)
+    // ~NEW~ Just logs form data for now
     console.log(formData);
 
-    // added today ~ sends the form data to the backend using POST 
+    // added today ~ sends the form data to the backend using POST
     storeUserData(formData); // added today ~ calls the POST function and passes the current form data
 
     // ~NEW~ Resets the form after submission
@@ -130,6 +149,7 @@ function SavedCountries({ countriesData }) { // NEW ~ receives countries data so
       <div className="saved-layout">
         {/* ~NEW~ Saved countries section */}
         <div className="saved-list-column">
+          
           {/* NEW NEW ~ loops through saved countries from backend */}
           {savedCountries.map((savedCountry) => {
             // NEW NEW ~ finds the full country object that matches the saved country name
@@ -208,7 +228,7 @@ function SavedCountries({ countriesData }) { // NEW ~ receives countries data so
                 Back
               </button>
 
-              {/* ~NEW~ Submit only logs & resets (no POST yet) */}
+              {/* ~NEW~ Submit only logs & resets */}
               <button type="submit" className="form-submit">
                 Submit
               </button>

@@ -1,4 +1,4 @@
-// Imports useParams so we can read the dynamic value from the URL (ex ~ /country/AFG)
+// Imports useParams so we can read the dynamic value from the URL (eg ~ /country/AFG)
 import { useParams } from "react-router-dom";
 
 /**
@@ -27,7 +27,7 @@ function CountryDetail({ countriesData }) {
   // We use cca3 because it is the official unique 3-letter code for each country
   const country = countriesData?.find((c) => c.cca3 === countryCode);
 
-  // If the country is not found (example: data not loaded yet),  then show a simple message
+  // If the country is not found (example: data not loaded yet), then show a simple message
   // This prevents the page from crashing while data is loading
   if (!country) {
     return (
@@ -51,8 +51,23 @@ function CountryDetail({ countriesData }) {
   // This keeps the JSX cleaner and easier to read
   const { name, flags, population, capital, region } = country;
 
+  const handleSaveCountry = async () => { // added today ~ runs when Save button is clicked
+  const response = await fetch("/api/save-one-country", { // sends POST request to backend
+    method: "POST", // POST means we are sending data to store
+    headers: {
+      "Content-Type": "application/json", // tells backend we are sending JSON
+    },
+    body: JSON.stringify({
+      country_name: name.common, // backend expects the country's common name
+    }),
+  });
+
+  const result = await response.text(); // backend then sends back a text message
+  console.log("save result", result); // added today ~ shows success message in the console
+};
+
   return (
-    // This wrapper lets us style the detail page like the Figma design
+    // This wrapper lets us style the detail page
     <section className="detail-page">
       {/* Back button at the top like design */}
       <button
@@ -88,9 +103,11 @@ function CountryDetail({ countriesData }) {
 
           {/*
             Save button under the country name.
-            Not functional yet.
+            Now functional.
           */}
-          <button type="button" className="detail-save-btn">
+          <button type="button" className="detail-save-btn"
+          onClick={handleSaveCountry}
+          >
             Save
           </button>
 
