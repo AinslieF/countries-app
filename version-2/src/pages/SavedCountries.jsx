@@ -81,11 +81,11 @@ function SavedCountries({ countriesData }) { // NEW ~ receives countries data so
     console.log("save result", result); // added today ~ shows the success message in the console
   };
 
-  // ~NEW~ Handles submitting the form
+  // ~NEW~ Handles submitting the FORM
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // prevents page refresh
 
-    // ~NEW~ Just logs form data for now
+    // ~NEW~ Just logs form data 
     console.log(formData);
 
     // added today ~ sends the form data to the backend using POST

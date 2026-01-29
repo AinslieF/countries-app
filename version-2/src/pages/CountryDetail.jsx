@@ -1,5 +1,6 @@
 // Imports useParams so we can read the dynamic value from the URL (eg ~ /country/AFG)
 import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react"; // added today~ we need state (viewCount) & useEffect to run POST on page load
 
 /**
  * CountryDetail page
@@ -27,6 +28,9 @@ function CountryDetail({ countriesData }) {
   // We use cca3 because it is the official unique 3-letter code for each country
   const country = countriesData?.find((c) => c.cca3 === countryCode);
 
+  // added today ~ stores how many times this country has been viewed
+  const [viewCount, setViewCount] = useState(null); // added today ~ starts as null until the backend sends a number
+
   // If the country is not found (example: data not loaded yet), then show a simple message
   // This prevents the page from crashing while data is loading
   if (!country) {
@@ -51,25 +55,67 @@ function CountryDetail({ countriesData }) {
   // This keeps the JSX cleaner and easier to read
   const { name, flags, population, capital, region } = country;
 
-  const handleSaveCountry = async () => { // added today ~ runs when Save button is clicked
-  const response = await fetch("/api/save-one-country", { // sends POST request to backend
-    method: "POST", // POST means we are sending data to store
-    headers: {
-      "Content-Type": "application/json", // tells backend we are sending JSON
-    },
-    body: JSON.stringify({
-      country_name: name.common, // backend expects the country's common name
-    }),
-  });
+  const handleSaveCountry = async () => {
+    // added today ~ runs when Save button is clicked
+    const response = await fetch("/api/save-one-country", {
+      // sends POST request to backend
+      method: "POST", // POST means we are sending data to store
+      headers: {
+        "Content-Type": "application/json", // tells backend we are sending JSON
+      },
+      body: JSON.stringify({
+        country_name: name.common, // backend expects the country's common name
+      }),
+    });
 
-  const result = await response.text(); // backend then sends back a text message
-  console.log("save result", result); // added today ~ shows success message in the console
-};
+    const result = await response.text(); // backend then sends back a text message
+    console.log("save result", result); // added today ~ shows success message in the console
+  };
+
+  // added today ~ updates the view count in the backend and gets the new count back
+  const updateCountryCount = async () => {
+    // added today ~ function that runs the country count POST request
+    const response = await fetch("/api/update-one-country-count", {
+      // added today ~ endpoint that updates (increments) the country count
+      method: "POST", // added today ~ POST because we are updating/storing data
+      headers: {
+        "Content-Type": "application/json", // added today ~ tells backend we are sending JSON
+      },
+      body: JSON.stringify({
+        country_name: name.common, // added today ~ backend needs the country name to track the count
+      }),
+    });
+
+    const data = await response.json(); // added today ~ converts JSON response into JavaScript data
+    setViewCount(data.count); // added today ~ saves the returned count number into React state
+  };
+
+  // added today ~ runs when the page loads or when the countryCode changes
+  useEffect(() => {
+    updateCountryCount(); // added today ~ triggers the POST request when you view a country page
+  }, [countryCode]); // added today ~ reruns when user clicks into a different country
+
+  // added today ~ if/else logic
+  let viewCountJSX = null; // added today ~ default is nothing until we have a real count
+  if (viewCount === null) {
+    // added today ~ if count has not loaded yet, show nothing
+    viewCountJSX = null; // added today ~ keeps the UI clean while data is loading
+  } else {
+    // added today ~ if count exists, show it on the page
+    viewCountJSX = (
+      // added today ~ JSX for the views row
+      <p className="detail-row">
+        {/* added today ~ matches my other detail rows */}
+        <span className="detail-label">Views:</span> {viewCount}
+        {/* added today ~ displays the count number from the backend */}
+      </p>
+    );
+  }
 
   return (
     // This wrapper lets us style the detail page
     <section className="detail-page">
-      {/* Back button at the top like design */}
+      {/* Back button at the top */}
       <button
         type="button"
         className="detail-back-btn"
@@ -105,11 +151,16 @@ function CountryDetail({ countriesData }) {
             Save button under the country name.
             Now functional.
           */}
-          <button type="button" className="detail-save-btn"
-          onClick={handleSaveCountry}
+          <button
+            type="button"
+            className="detail-save-btn"
+            onClick={handleSaveCountry}
           >
             Save
           </button>
+
+          {/* added today ~ shows the view count row (only appears after backend returns a number) */}
+          {viewCountJSX} {/* added today ~ inserts the if/else result here */}
 
           {/* Country details list */}
           <p className="detail-row">
@@ -128,7 +179,6 @@ function CountryDetail({ countriesData }) {
           </p>
         </div>
       </div>
-
     </section>
   );
 }
