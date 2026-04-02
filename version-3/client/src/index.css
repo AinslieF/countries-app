@@ -1,0 +1,21 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+:root {
+  --dark-blue: #111517;
+  --light-gray: #fafafa;
+  --white: #ffffff;
+  --dark-gray: #858585;
+  --purple: #7672ce;
+
+  font-family: "Nunito Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--light-gray);
+  color: var(--dark-blue);
+}
